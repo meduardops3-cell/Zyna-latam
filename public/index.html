@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zyna LATAM — Encuentra la mejor IA en segundos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+```
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --card: #1a1a24;
+  --card-hover: #21212e;
+  --accent: #7c3aed;
+  --accent2: #06b6d4;
+  --accent3: #f59e0b;
+  --text: #f0f0f8;
+  --muted: #8888a8;
+  --border: #2a2a3a;
+  --radius: 14px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── FONDO ANIMADO ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(124,58,237,0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(6,182,212,0.12) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ── */
+header {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 64px 24px 40px;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(124,58,237,0.15);
+  border: 1px solid rgba(124,58,237,0.4);
+  color: #a78bfa;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.4rem, 7vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 16px;
+}
+
+h1 span {
+  background: linear-gradient(135deg, #a78bfa, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 480px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* ── SEARCH ── */
+.search-wrap {
+  position: relative;
+  max-width: 560px;
+  margin: 0 auto 16px;
+}
+
+.search-wrap svg {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+
+#search {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px 16px 50px;
+  font-size: 1rem;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search::placeholder { color: var(--muted); }
+#search:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+}
+
+/* ── FILTROS ── */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  max-width: 760px;
+  margin: 0 auto 48px;
+  padding: 0 16px;
+  position: relative;
+  z-index: 10;
+}
+
+.filtro-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filtro-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+.filtro-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ── STATS ── */
+.stats {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 10;
+}
+
+.stats strong { color: var(--text); }
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+  position: relative;
+  z-index: 10;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+  animation: fadeUp 0.4s both;
+  text-decoration: none;
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: var(--card-hover);
+  border-color: rgba(124,58,237,0.4);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(124,58,237,0.15);
+}
+
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.card-logo {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+}
+
+.card-meta { flex: 1; min-width: 0; }
+
+.card-nombre {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.card-cat {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(124,58,237,0.12);
+  color: #a78bfa;
+  border: 1px solid rgba(124,58,237,0.25);
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tag-gratis {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+.tag-gratis.si {
+  background: rgba(16,185,129,0.12);
+  color: #34d399;
+  border: 1px solid rgba(16,185,129,0.25);
+}
+.tag-gratis.no {
+  background: rgba(245,158,11,0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(245,158,11,0.2);
+}
+
+.card-link {
+  font-size: 0.8rem;
+  color: var(--accent2);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.2s;
+}
+
+.card:hover .card-link { gap: 8px; }
+
+/* ── EMPTY ── */
+.empty {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 80px 20px;
+  color: var(--muted);
+}
+.empty-icon { font-size: 3rem; margin-bottom: 16px; }
+.empty h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 10;
+}
+
+/* ── ANIMACIÓN ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  header { padding: 40px 20px 28px; }
+  .grid { grid-template-columns: 1fr; padding: 0 16px 60px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="badge">🌎 Hecho para LATAM · 2026</div>
+  <h1>Encuentra la mejor<br><span>IA en segundos</span></h1>
+  <p class="subtitle">El directorio más completo de herramientas de inteligencia artificial para la comunidad hispanohablante.</p>
+
+  <div class="search-wrap">
+    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input type="text" id="search" placeholder="Buscar herramienta, categoría..." autocomplete="off" />
+  </div>
+</header>
+
+<div class="filtros" id="filtros">
+  <!-- Se llena con JS -->
+</div>
+
+<p class="stats" id="stats"></p>
+
+<div class="grid" id="grid">
+  <!-- Se llena con JS -->
+</div>
+
+<footer>
+  Zyna LATAM · Directorio de IA · <a href="/api/tools" style="color:var(--accent2)">API</a>
+</footer>
+
+<script>
+  const API = '/api/tools';
+  const API_CATS = '/api/categorias';
+  let categoriaActual = 'Todas';
+  let busqueda = '';
+  let debounceTimer;
+
+  async function cargarCategorias() {
+    const res = await fetch(API_CATS);
+    const cats = await res.json();
+    const cont = document.getElementById('filtros');
+    cont.innerHTML = cats.map(c => `
+      <button class="filtro-btn ${c === 'Todas' ? 'active' : ''}" data-cat="${c}">${c}</button>
+    `).join('');
+    cont.querySelectorAll('.filtro-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        categoriaActual = btn.dataset.cat;
+        cont.querySelectorAll('.filtro-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        cargarTools();
+      });
+    });
+  }
+
+  async function cargarTools() {
+    const params = new URLSearchParams();
+    if (categoriaActual && categoriaActual !== 'Todas') params.set('categoria', categoriaActual);
+    if (busqueda) params.set('q', busqueda);
+
+    const res = await fetch(`${API}?${params}`);
+    const data = await res.json();
+    renderTools(data.tools, data.total);
+  }
+
+  function renderTools(tools, total) {
+    const grid = document.getElementById('grid');
+    const stats = document.getElementById('stats');
+
+    stats.innerHTML = `Mostrando <strong>${total}</strong> herramientas`;
+
+    if (tools.length === 0) {
+      grid.innerHTML = `
+        <div class="empty">
+          <div class="empty-icon">🔭</div>
+          <h3>Sin resultados</h3>
+          <p>Prueba con otra búsqueda o categoría</p>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = tools.map((t, i) => `
+      <a class="card" href="${t.link}" target="_blank" rel="noopener" style="animation-delay:${i * 0.04}s">
+        <div class="card-top">
+          <div class="card-logo">${t.logo}</div>
+          <div class="card-meta">
+            <div class="card-nombre">${t.nombre}</div>
+            <span class="card-cat">${t.categoria}</span>
+          </div>
+        </div>
+        <p class="card-desc">${t.descripcion}</p>
+        <div class="card-footer">
+          <span class="tag-gratis ${t.gratis ? 'si' : 'no'}">${t.gratis ? '✓ Gratis' : '💳 De pago'}</span>
+          <span class="card-link">Visitar →</span>
+        </div>
+      </a>
+    `).join('');
+  }
+
+  document.getElementById('search').addEventListener('input', e => {
+    busqueda = e.target.value.trim();
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(cargarTools, 280);
+  });
+
+  // Inicializar
+  cargarCategorias().then(cargarTools);
+</script>
+
+</body>
+</html>
