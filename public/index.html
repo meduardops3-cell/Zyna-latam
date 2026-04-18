@@ -432,7 +432,25 @@ footer {
 
   // Inicializar
   cargarCategorias().then(cargarTools);
-</script>
+  <div id="tools"></div>
+<script>
+fetch("/api/tools")
+  .then(res => res.json())
+  .then(data => {
+    console.log(data);
 
+    const container = document.getElementById("tools");
+
+    data.tools.forEach(tool => {
+      const div = document.createElement("div");
+      div.innerHTML = `
+        <h3>${tool.logo} ${tool.nombre}</h3>
+        <p>${tool.descripcion}</p>
+        <a href="${tool.link}" target="_blank">Abrir</a>
+      `;
+      container.appendChild(div);
+    });
+  });
+</script>
 </body>
 </html>
