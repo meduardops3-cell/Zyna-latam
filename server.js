@@ -1,123 +1,104 @@
-const express = require("express");
-const cors = require("cors");
-const path = require("path");
+const express = require(“express”);
+const cors = require(“cors”);
+const path = require(“path”);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, “public”)));
 
-// ─── DATA (50 HERRAMIENTAS) ─────────────────────────────
+const FAV = “https://www.google.com/s2/favicons?sz=64&domain=”;
 
 const tools = [
-{ id:1,nombre:"ChatGPT",slug:"chatgpt",descripcion:"Asistente IA.",categoria:"Asistente",gratis:true,popular:99,nuevo:false,featured:true,tags:["ia"]},
-{ id:2,nombre:"Claude",slug:"claude",descripcion:"IA avanzada.",categoria:"Asistente",gratis:true,popular:95,nuevo:false,featured:true,tags:["ia"]},
-{ id:3,nombre:"Gemini",slug:"gemini",descripcion:"IA de Google.",categoria:"Asistente",gratis:true,popular:94,nuevo:false,featured:false,tags:["ia"]},
-{ id:4,nombre:"Perplexity",slug:"perplexity",descripcion:"Buscador IA.",categoria:"Búsqueda",gratis:true,popular:93,nuevo:false,featured:false,tags:["ia"]},
-{ id:5,nombre:"Midjourney",slug:"midjourney",descripcion:"Imágenes IA.",categoria:"Imágenes",gratis:false,popular:97,nuevo:false,featured:true,tags:["ia"]},
-{ id:6,nombre:"DALL·E",slug:"dalle",descripcion:"Imágenes IA.",categoria:"Imágenes",gratis:true,popular:96,nuevo:false,featured:false,tags:["ia"]},
-{ id:7,nombre:"Leonardo AI",slug:"leonardo",descripcion:"Arte IA.",categoria:"Imágenes",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:8,nombre:"Stable Diffusion",slug:"stable",descripcion:"Modelo open source.",categoria:"Imágenes",gratis:true,popular:92,nuevo:false,featured:false,tags:["ia"]},
-{ id:9,nombre:"Runway",slug:"runway",descripcion:"Video IA.",categoria:"Video",gratis:true,popular:91,nuevo:true,featured:false,tags:["ia"]},
-{ id:10,nombre:"Pika",slug:"pika",descripcion:"Video IA.",categoria:"Video",gratis:true,popular:89,nuevo:true,featured:false,tags:["ia"]},
-{ id:11,nombre:"Sora",slug:"sora",descripcion:"Video IA.",categoria:"Video",gratis:false,popular:99,nuevo:true,featured:true,tags:["ia"]},
-{ id:12,nombre:"Suno",slug:"suno",descripcion:"Música IA.",categoria:"Audio",gratis:true,popular:92,nuevo:true,featured:false,tags:["ia"]},
-{ id:13,nombre:"ElevenLabs",slug:"elevenlabs",descripcion:"Voz IA.",categoria:"Audio",gratis:true,popular:95,nuevo:false,featured:false,tags:["ia"]},
-{ id:14,nombre:"PlayHT",slug:"playht",descripcion:"Text to speech.",categoria:"Audio",gratis:true,popular:88,nuevo:false,featured:false,tags:["ia"]},
-{ id:15,nombre:"Cursor",slug:"cursor",descripcion:"Código IA.",categoria:"Código",gratis:false,popular:91,nuevo:false,featured:false,tags:["ia"]},
-{ id:16,nombre:"Copilot",slug:"copilot",descripcion:"Código IA.",categoria:"Código",gratis:false,popular:96,nuevo:false,featured:true,tags:["ia"]},
-{ id:17,nombre:"Codeium",slug:"codeium",descripcion:"Código IA.",categoria:"Código",gratis:true,popular:89,nuevo:false,featured:false,tags:["ia"]},
-{ id:18,nombre:"Replit AI",slug:"replit",descripcion:"Programar IA.",categoria:"Código",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:19,nombre:"Canva AI",slug:"canva",descripcion:"Diseño IA.",categoria:"Diseño",gratis:true,popular:96,nuevo:false,featured:false,tags:["ia"]},
-{ id:20,nombre:"Adobe Firefly",slug:"firefly",descripcion:"Diseño IA.",categoria:"Diseño",gratis:true,popular:95,nuevo:false,featured:false,tags:["ia"]},
-{ id:21,nombre:"Looka",slug:"looka",descripcion:"Logos IA.",categoria:"Diseño",gratis:false,popular:85,nuevo:false,featured:false,tags:["ia"]},
-{ id:22,nombre:"Khroma",slug:"khroma",descripcion:"Colores IA.",categoria:"Diseño",gratis:true,popular:80,nuevo:false,featured:false,tags:["ia"]},
-{ id:23,nombre:"Notion AI",slug:"notion",descripcion:"Productividad IA.",categoria:"Productividad",gratis:true,popular:95,nuevo:false,featured:false,tags:["ia"]},
-{ id:24,nombre:"Gamma",slug:"gamma",descripcion:"Presentaciones IA.",categoria:"Productividad",gratis:true,popular:92,nuevo:false,featured:false,tags:["ia"]},
-{ id:25,nombre:"Tome",slug:"tome",descripcion:"Slides IA.",categoria:"Productividad",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:26,nombre:"Taskade",slug:"taskade",descripcion:"Organización IA.",categoria:"Productividad",gratis:true,popular:88,nuevo:false,featured:false,tags:["ia"]},
-{ id:27,nombre:"DeepL",slug:"deepl",descripcion:"Traducción IA.",categoria:"Traducción",gratis:true,popular:97,nuevo:false,featured:false,tags:["ia"]},
-{ id:28,nombre:"Google Translate",slug:"translate",descripcion:"Traducción.",categoria:"Traducción",gratis:true,popular:95,nuevo:false,featured:false,tags:["ia"]},
-{ id:29,nombre:"Wordtune",slug:"wordtune",descripcion:"Escritura IA.",categoria:"Asistente",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:30,nombre:"Jasper",slug:"jasper",descripcion:"Marketing IA.",categoria:"Asistente",gratis:false,popular:92,nuevo:false,featured:false,tags:["ia"]},
-{ id:31,nombre:"Writesonic",slug:"writesonic",descripcion:"Texto IA.",categoria:"Asistente",gratis:true,popular:89,nuevo:false,featured:false,tags:["ia"]},
-{ id:32,nombre:"Copy.ai",slug:"copyai",descripcion:"Copywriting IA.",categoria:"Asistente",gratis:true,popular:91,nuevo:false,featured:false,tags:["ia"]},
-{ id:33,nombre:"Framer AI",slug:"framer",descripcion:"Web IA.",categoria:"Diseño",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:34,nombre:"Durable",slug:"durable",descripcion:"Web IA.",categoria:"Diseño",gratis:true,popular:88,nuevo:false,featured:false,tags:["ia"]},
-{ id:35,nombre:"Uizard",slug:"uizard",descripcion:"UI IA.",categoria:"Diseño",gratis:true,popular:87,nuevo:false,featured:false,tags:["ia"]},
-{ id:36,nombre:"Remove.bg",slug:"removebg",descripcion:"Quitar fondo.",categoria:"Imágenes",gratis:true,popular:93,nuevo:false,featured:false,tags:["ia"]},
-{ id:37,nombre:"Cleanup.pictures",slug:"cleanup",descripcion:"Editar fotos.",categoria:"Imágenes",gratis:true,popular:88,nuevo:false,featured:false,tags:["ia"]},
-{ id:38,nombre:"Clipdrop",slug:"clipdrop",descripcion:"Fotos IA.",categoria:"Imágenes",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:39,nombre:"HeyGen",slug:"heygen",descripcion:"Avatares IA.",categoria:"Video",gratis:false,popular:93,nuevo:true,featured:false,tags:["ia"]},
-{ id:40,nombre:"Synthesia",slug:"synthesia",descripcion:"Video IA.",categoria:"Video",gratis:false,popular:95,nuevo:false,featured:false,tags:["ia"]},
-{ id:41,nombre:"Descript",slug:"descript",descripcion:"Audio/video IA.",categoria:"Audio",gratis:true,popular:92,nuevo:false,featured:false,tags:["ia"]},
-{ id:42,nombre:"Otter",slug:"otter",descripcion:"Transcripción IA.",categoria:"Audio",gratis:true,popular:91,nuevo:false,featured:false,tags:["ia"]},
-{ id:43,nombre:"Zapier AI",slug:"zapier",descripcion:"Automatización.",categoria:"Productividad",gratis:true,popular:93,nuevo:false,featured:false,tags:["ia"]},
-{ id:44,nombre:"Make",slug:"make",descripcion:"Automatización.",categoria:"Productividad",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:45,nombre:"LangChain",slug:"langchain",descripcion:"Framework IA.",categoria:"Código",gratis:true,popular:92,nuevo:false,featured:false,tags:["ia"]},
-{ id:46,nombre:"HuggingFace",slug:"huggingface",descripcion:"Modelos IA.",categoria:"Código",gratis:true,popular:95,nuevo:false,featured:false,tags:["ia"]},
-{ id:47,nombre:"Poe",slug:"poe",descripcion:"Multi IA.",categoria:"Asistente",gratis:true,popular:93,nuevo:false,featured:false,tags:["ia"]},
-{ id:48,nombre:"Phind",slug:"phind",descripcion:"Buscar código.",categoria:"Código",gratis:true,popular:90,nuevo:false,featured:false,tags:["ia"]},
-{ id:49,nombre:"Andi",slug:"andi",descripcion:"Buscador IA.",categoria:"Búsqueda",gratis:true,popular:85,nuevo:false,featured:false,tags:["ia"]},
-{ id:50,nombre:"You.com",slug:"you",descripcion:"Buscador IA.",categoria:"Búsqueda",gratis:true,popular:88,nuevo:false,featured:false,tags:["ia"]}
+{ id:1,  nombre:“ChatGPT”,            slug:“chatgpt”,           descripcion:“El asistente de IA mas usado del mundo. Redacta, analiza, programa y responde en espanol.”,                          link:“https://chat.openai.com”,                       logoUrl:FAV+“chat.openai.com”,         logo:“💬”, categoria:“Asistente”,    gratis:true,  popular:99, nuevo:false, featured:true,  tags:[“chatbot”,“redaccion”,“openai”] },
+{ id:2,  nombre:“Claude”,             slug:“claude”,            descripcion:“Asistente de Anthropic con razonamiento profundo. Ideal para documentos largos y analisis complejos.”,              link:“https://claude.ai”,                             logoUrl:FAV+“claude.ai”,               logo:“🤖”, categoria:“Asistente”,    gratis:true,  popular:95, nuevo:false, featured:true,  tags:[“chatbot”,“analisis”,“documentos”] },
+{ id:3,  nombre:“Gemini”,             slug:“gemini”,            descripcion:“IA de Google integrada con Gmail, Docs y Drive. Multimodal y disponible en espanol para LATAM.”,                   link:“https://gemini.google.com”,                     logoUrl:FAV+“gemini.google.com”,       logo:“✨”, categoria:“Asistente”,    gratis:true,  popular:90, nuevo:false, featured:false, tags:[“google”,“multimodal”,“espanol”] },
+{ id:4,  nombre:“Copilot Microsoft”,  slug:“copilot”,           descripcion:“IA de Microsoft basada en GPT-4. Integrada en Windows, Edge y Office. Gratis para todos.”,                         link:“https://copilot.microsoft.com”,                 logoUrl:FAV+“copilot.microsoft.com”,   logo:“🪟”, categoria:“Asistente”,    gratis:true,  popular:85, nuevo:false, featured:false, tags:[“microsoft”,“office”,“windows”] },
+{ id:5,  nombre:“Meta AI”,            slug:“meta-ai”,           descripcion:“IA de Meta integrada en WhatsApp, Instagram y Facebook. Disponible en espanol para toda LATAM.”,                   link:“https://www.meta.ai”,                           logoUrl:FAV+“meta.ai”,                 logo:“🔵”, categoria:“Asistente”,    gratis:true,  popular:82, nuevo:false, featured:false, tags:[“meta”,“whatsapp”,“instagram”] },
+{ id:6,  nombre:“Grok”,              slug:“grok”,               descripcion:“IA de xAI integrada en X Twitter. Accede a informacion en tiempo real y responde sin filtros.”,                    link:“https://grok.com”,                              logoUrl:FAV+“grok.com”,                logo:“⚡”, categoria:“Asistente”,    gratis:true,  popular:78, nuevo:false, featured:false, tags:[“xai”,“twitter”,“tiempo real”] },
+{ id:7,  nombre:“Le Chat Mistral”,    slug:“le-chat”,           descripcion:“Asistente IA europeo de Mistral. Rapido, privado y multilingue. Excelente alternativa a ChatGPT.”,                 link:“https://chat.mistral.ai”,                       logoUrl:FAV+“mistral.ai”,              logo:“🌊”, categoria:“Asistente”,    gratis:true,  popular:70, nuevo:false, featured:false, tags:[“mistral”,“privacidad”,“europeo”] },
+{ id:8,  nombre:“Poe”,               slug:“poe”,                descripcion:“Accede a ChatGPT, Claude, Gemini y otros modelos en un solo lugar. Ideal para comparar respuestas.”,               link:“https://poe.com”,                               logoUrl:FAV+“poe.com”,                 logo:“🔮”, categoria:“Asistente”,    gratis:true,  popular:75, nuevo:false, featured:false, tags:[“multimodelo”,“comparar”,“chatbot”] },
+{ id:9,  nombre:“Perplexity”,         slug:“perplexity”,        descripcion:“Motor de busqueda con IA que cita fuentes reales. Ideal para investigar con referencias verificadas.”,              link:“https://perplexity.ai”,                         logoUrl:FAV+“perplexity.ai”,           logo:“🔍”, categoria:“Busqueda”,     gratis:true,  popular:88, nuevo:false, featured:false, tags:[“busqueda”,“investigacion”,“fuentes”] },
+{ id:10, nombre:“You.com”,            slug:“you-com”,           descripcion:“Buscador con IA que responde preguntas con fuentes verificadas y modo chat integrado.”,                             link:“https://you.com”,                               logoUrl:FAV+“you.com”,                 logo:“🌐”, categoria:“Busqueda”,     gratis:true,  popular:80, nuevo:false, featured:false, tags:[“busqueda”,“chat”,“fuentes”] },
+{ id:11, nombre:“Midjourney”,         slug:“midjourney”,        descripcion:“El generador de imagenes mas potente del mercado. Crea arte digital e ilustraciones de calidad profesional.”,       link:“https://midjourney.com”,                        logoUrl:FAV+“midjourney.com”,          logo:“🎨”, categoria:“Imagenes”,     gratis:false, popular:97, nuevo:false, featured:true,  tags:[“arte”,“imagenes”,“diseno”,“discord”] },
+{ id:12, nombre:“DALL-E 3”,           slug:“dalle-3”,           descripcion:“Generador de imagenes de OpenAI en ChatGPT. Crea imagenes realistas y artisticas desde descripciones de texto.”,   link:“https://openai.com/dall-e-3”,                   logoUrl:FAV+“openai.com”,              logo:“🖼️”, categoria:“Imagenes”,     gratis:false, popular:84, nuevo:false, featured:false, tags:[“imagenes”,“openai”,“texto a imagen”] },
+{ id:13, nombre:“Stable Diffusion”,   slug:“stable-diffusion”,  descripcion:“Modelo open-source para generar imagenes. Completamente gratis y puede correrse de forma local.”,                  link:“https://stability.ai”,                          logoUrl:FAV+“stability.ai”,            logo:“🌀”, categoria:“Imagenes”,     gratis:true,  popular:79, nuevo:false, featured:false, tags:[“open source”,“local”,“imagenes”] },
+{ id:14, nombre:“Leonardo AI”,        slug:“leonardo-ai”,       descripcion:“Generacion de imagenes para videojuegos, concept art y personajes. Plan gratuito muy generoso.”,                   link:“https://leonardo.ai”,                           logoUrl:FAV+“leonardo.ai”,             logo:“🦁”, categoria:“Imagenes”,     gratis:true,  popular:75, nuevo:false, featured:false, tags:[“videojuegos”,“concept art”,“personajes”] },
+{ id:15, nombre:“Ideogram”,           slug:“ideogram”,          descripcion:“Generador de imagenes especializado en texto. El mejor para crear logos, posters y disenos con tipografia.”,       link:“https://ideogram.ai”,                           logoUrl:FAV+“ideogram.ai”,             logo:“🔤”, categoria:“Imagenes”,     gratis:true,  popular:72, nuevo:false, featured:false, tags:[“logos”,“tipografia”,“posters”] },
+{ id:16, nombre:“Adobe Firefly”,      slug:“adobe-firefly”,     descripcion:“IA generativa de Adobe integrada en Photoshop e Illustrator. Genera y edita imagenes con lenguaje natural.”,      link:“https://firefly.adobe.com”,                     logoUrl:FAV+“adobe.com”,               logo:“🔥”, categoria:“Imagenes”,     gratis:true,  popular:80, nuevo:false, featured:false, tags:[“adobe”,“photoshop”,“edicion”] },
+{ id:17, nombre:“Canva AI”,           slug:“canva-ai”,          descripcion:“La herramienta de diseno con IA mas popular en LATAM. Crea contenido para redes sociales en minutos.”,             link:“https://canva.com”,                             logoUrl:FAV+“canva.com”,               logo:“🖌️”, categoria:“Imagenes”,     gratis:true,  popular:94, nuevo:false, featured:false, tags:[“diseno”,“redes sociales”,“plantillas”] },
+{ id:18, nombre:“Remove.bg”,          slug:“remove-bg”,         descripcion:“Elimina el fondo de cualquier imagen en segundos con IA. Completamente gratis y sin registro.”,                    link:“https://remove.bg”,                             logoUrl:FAV+“remove.bg”,               logo:“✂️”, categoria:“Imagenes”,     gratis:true,  popular:88, nuevo:false, featured:false, tags:[“fondo”,“edicion”,“fotos”] },
+{ id:19, nombre:“Runway”,             slug:“runway”,            descripcion:“Suite profesional de video con IA. Genera videos desde texto o imagenes con efectos cinematograficos.”,             link:“https://runwayml.com”,                          logoUrl:FAV+“runwayml.com”,            logo:“🎬”, categoria:“Video”,        gratis:true,  popular:86, nuevo:false, featured:false, tags:[“video”,“texto a video”,“edicion”] },
+{ id:20, nombre:“Kling AI”,           slug:“kling-ai”,          descripcion:“Generador de video de alta calidad con movimientos realistas y control preciso de personajes.”,                    link:“https://klingai.com”,                           logoUrl:FAV+“klingai.com”,             logo:“📹”, categoria:“Video”,        gratis:true,  popular:74, nuevo:true,  featured:false, tags:[“video”,“realismo”,“personajes”] },
+{ id:21, nombre:“Sora”,               slug:“sora”,              descripcion:“Generador de video de OpenAI. Crea videos de hasta 1 minuto con calidad cinematografica desde texto.”,             link:“https://sora.com”,                              logoUrl:FAV+“sora.com”,                logo:“🎥”, categoria:“Video”,        gratis:false, popular:88, nuevo:true,  featured:false, tags:[“video”,“openai”,“cinematografico”] },
+{ id:22, nombre:“Pika Labs”,          slug:“pika-labs”,         descripcion:“Genera y edita videos cortos con IA. Ideal para reels, animaciones y contenido para redes sociales.”,              link:“https://pika.art”,                              logoUrl:FAV+“pika.art”,                logo:“⚡”, categoria:“Video”,        gratis:true,  popular:73, nuevo:false, featured:false, tags:[“video”,“reels”,“animacion”] },
+{ id:23, nombre:“HeyGen”,             slug:“heygen”,            descripcion:“Crea videos con avatares IA que hablan en espanol. Perfecto para marketing, cursos y contenido corporativo.”,       link:“https://heygen.com”,                            logoUrl:FAV+“heygen.com”,              logo:“🧑‍💼”, categoria:“Video”,      gratis:true,  popular:80, nuevo:false, featured:false, tags:[“avatar”,“marketing”,“espanol”,“cursos”] },
+{ id:24, nombre:“Synthesia”,          slug:“synthesia”,         descripcion:“Videos con presentadores IA en mas de 130 idiomas incluyendo espanol. Para capacitacion y comunicacion.”,          link:“https://synthesia.io”,                          logoUrl:FAV+“synthesia.io”,            logo:“🎙️”, categoria:“Video”,        gratis:false, popular:75, nuevo:false, featured:false, tags:[“presentador”,“capacitacion”,“espanol”] },
+{ id:25, nombre:“Luma Dream Machine”, slug:“luma”,              descripcion:“Genera videos en HD cinematografico desde texto o imagenes. Movimientos de camara naturales y fluidos.”,           link:“https://lumalabs.ai/dream-machine”,             logoUrl:FAV+“lumalabs.ai”,             logo:“🌙”, categoria:“Video”,        gratis:true,  popular:71, nuevo:true,  featured:false, tags:[“video”,“HD”,“cinematografico”] },
+{ id:26, nombre:“ElevenLabs”,         slug:“elevenlabs”,        descripcion:“La mejor plataforma de voz IA. Clona cualquier voz en minutos y genera narracion en espanol.”,                     link:“https://elevenlabs.io”,                         logoUrl:FAV+“elevenlabs.io”,           logo:“🎙️”, categoria:“Audio”,        gratis:true,  popular:90, nuevo:false, featured:true,  tags:[“voz”,“clonacion”,“espanol”,“podcast”] },
+{ id:27, nombre:“Suno”,               slug:“suno”,              descripcion:“Genera canciones completas con letra, melodia y produccion desde una frase. El Midjourney de la musica.”,           link:“https://suno.ai”,                               logoUrl:FAV+“suno.ai”,                 logo:“🎵”, categoria:“Audio”,        gratis:true,  popular:85, nuevo:false, featured:false, tags:[“musica”,“canciones”,“letra”] },
+{ id:28, nombre:“Udio”,               slug:“udio”,              descripcion:“Generacion de musica de calidad profesional en multiples generos y estilos. Rival de Suno.”,                       link:“https://udio.com”,                              logoUrl:FAV+“udio.com”,                logo:“🎶”, categoria:“Audio”,        gratis:true,  popular:74, nuevo:false, featured:false, tags:[“musica”,“generos”,“produccion”] },
+{ id:29, nombre:“Adobe Podcast”,      slug:“adobe-podcast”,     descripcion:“Mejora la calidad de tu voz con IA en segundos. Elimina ruido de fondo y hace sonar cualquier micro profesional.”, link:“https://podcast.adobe.com”,                     logoUrl:FAV+“adobe.com”,               logo:“🎚️”, categoria:“Audio”,        gratis:true,  popular:78, nuevo:false, featured:false, tags:[“podcast”,“calidad”,“ruido”,“microfono”] },
+{ id:30, nombre:“Descript”,           slug:“descript”,          descripcion:“Edita audio y video como si fuera texto. Elimina silencios, clona tu voz y genera transcripciones.”,               link:“https://descript.com”,                          logoUrl:FAV+“descript.com”,            logo:“✂️”, categoria:“Audio”,        gratis:true,  popular:72, nuevo:false, featured:false, tags:[“edicion”,“podcast”,“transcripcion”] },
+{ id:31, nombre:“Otter.ai”,           slug:“otter-ai”,          descripcion:“Transcribe reuniones de Zoom, Meet y Teams en tiempo real. Genera resumenes y extrae tareas automaticamente.”,      link:“https://otter.ai”,                              logoUrl:FAV+“otter.ai”,                logo:“🦦”, categoria:“Audio”,        gratis:true,  popular:76, nuevo:false, featured:false, tags:[“transcripcion”,“reuniones”,“zoom”,“meet”] },
+{ id:32, nombre:“GitHub Copilot”,     slug:“github-copilot”,    descripcion:“El asistente de codigo mas usado del mundo. Completa funciones enteras y genera codigo desde comentarios.”,        link:“https://github.com/features/copilot”,           logoUrl:FAV+“github.com”,              logo:“👨‍💻”, categoria:“Codigo”,        gratis:false, popular:93, nuevo:false, featured:false, tags:[“codigo”,“vscode”,“github”,“autocompletado”] },
+{ id:33, nombre:“Cursor”,             slug:“cursor”,            descripcion:“Editor de codigo IA que entiende todo tu proyecto. Refactoriza, genera y corrige bugs con lenguaje natural.”,      link:“https://cursor.sh”,                             logoUrl:FAV+“cursor.sh”,               logo:“⌨️”, categoria:“Codigo”,        gratis:true,  popular:91, nuevo:false, featured:false, tags:[“codigo”,“editor”,“refactorizar”] },
+{ id:34, nombre:“v0 by Vercel”,       slug:“v0-vercel”,         descripcion:“Genera interfaces React y Next.js con IA. Crea componentes profesionales listos para produccion en segundos.”,     link:“https://v0.dev”,                                logoUrl:FAV+“v0.dev”,                  logo:“▲”,  categoria:“Codigo”,        gratis:true,  popular:82, nuevo:false, featured:false, tags:[“react”,“nextjs”,“ui”,“frontend”] },
+{ id:35, nombre:“Lovable”,            slug:“lovable”,           descripcion:“Crea apps web completas con IA desde una descripcion. Frontend, backend y base de datos. Deploy con un clic.”,     link:“https://lovable.dev”,                           logoUrl:FAV+“lovable.dev”,             logo:“💜”, categoria:“Codigo”,        gratis:true,  popular:78, nuevo:true,  featured:false, tags:[“apps”,“fullstack”,“deploy”,“sin codigo”] },
+{ id:36, nombre:“Bolt.new”,           slug:“bolt-new”,          descripcion:“Construye apps completas desde el navegador con IA. Soporta React, Next.js y Node.js sin instalar nada.”,          link:“https://bolt.new”,                              logoUrl:FAV+“bolt.new”,                logo:“⚡”, categoria:“Codigo”,        gratis:true,  popular:80, nuevo:true,  featured:false, tags:[“apps”,“navegador”,“react”,“node”] },
+{ id:37, nombre:“Replit AI”,          slug:“replit-ai”,         descripcion:“IDE en el navegador con agente IA que construye y deploya apps completas. Ideal para empezar sin instalar nada.”,  link:“https://replit.com”,                            logoUrl:FAV+“replit.com”,              logo:“🔄”, categoria:“Codigo”,        gratis:true,  popular:77, nuevo:false, featured:false, tags:[“ide”,“deploy”,“navegador”,“agente”] },
+{ id:38, nombre:“Windsurf”,           slug:“windsurf”,          descripcion:“Editor de codigo IA con modelo Cascade que razona sobre todo tu proyecto. Alternativa gratuita a Cursor.”,          link:“https://codeium.com/windsurf”,                  logoUrl:FAV+“codeium.com”,             logo:“🏄”, categoria:“Codigo”,        gratis:true,  popular:74, nuevo:true,  featured:false, tags:[“codigo”,“editor”,“cascade”,“gratis”] },
+{ id:39, nombre:“Notion AI”,          slug:“notion-ai”,         descripcion:“IA integrada en Notion para redactar, resumir, traducir y organizar notas. Perfecto para equipos y proyectos.”,    link:“https://notion.so/product/ai”,                  logoUrl:FAV+“notion.so”,               logo:“📝”, categoria:“Productividad”, gratis:false, popular:82, nuevo:false, featured:false, tags:[“notas”,“organizacion”,“equipos”,“resumir”] },
+{ id:40, nombre:“Gamma”,              slug:“gamma”,             descripcion:“Crea presentaciones, one-pagers y sitios web profesionales con IA en menos de 2 minutos. Sin PowerPoint.”,         link:“https://gamma.app”,                             logoUrl:FAV+“gamma.app”,               logo:“📊”, categoria:“Productividad”, gratis:true,  popular:78, nuevo:false, featured:false, tags:[“presentaciones”,“slides”,“web”] },
+{ id:41, nombre:“Zapier AI”,          slug:“zapier-ai”,         descripcion:“Automatiza flujos de trabajo entre mas de 7000 apps con IA. Conecta Gmail, Slack, Notion y miles de herramientas.”, link:“https://zapier.com/ai”,                        logoUrl:FAV+“zapier.com”,              logo:“⚡”, categoria:“Productividad”, gratis:true,  popular:80, nuevo:false, featured:false, tags:[“automatizacion”,“integraciones”,“workflows”] },
+{ id:42, nombre:“Make”,               slug:“make”,              descripcion:“Automatizacion visual de flujos de trabajo con IA. Alternativa a Zapier con mas flexibilidad y plan gratuito.”,     link:“https://make.com”,                              logoUrl:FAV+“make.com”,                logo:“🔧”, categoria:“Productividad”, gratis:true,  popular:74, nuevo:false, featured:false, tags:[“automatizacion”,“visual”,“workflows”] },
+{ id:43, nombre:“Framer AI”,          slug:“framer-ai”,         descripcion:“Crea sitios web profesionales con IA desde una descripcion. Diseno, animaciones y publicacion en un solo lugar.”,  link:“https://framer.com”,                            logoUrl:FAV+“framer.com”,              logo:“🖥️”, categoria:“Diseno”,        gratis:true,  popular:78, nuevo:false, featured:false, tags:[“web”,“animaciones”,“diseno”,“publicacion”] },
+{ id:44, nombre:“Looka”,              slug:“looka”,             descripcion:“Crea tu logo y branding completo con IA en minutos. Genera paleta de colores, tipografia y kit de marca.”,         link:“https://looka.com”,                             logoUrl:FAV+“looka.com”,               logo:“🎯”, categoria:“Diseno”,        gratis:false, popular:72, nuevo:false, featured:false, tags:[“logo”,“branding”,“identidad”,“marca”] },
+{ id:45, nombre:“Uizard”,             slug:“uizard”,            descripcion:“Disena apps y webs a partir de bocetos o texto con IA. Convierte ideas en wireframes interactivos rapido.”,        link:“https://uizard.io”,                             logoUrl:FAV+“uizard.io”,               logo:“📱”, categoria:“Diseno”,        gratis:true,  popular:68, nuevo:false, featured:false, tags:[“wireframes”,“prototipos”,“apps”,“bocetos”] },
+{ id:46, nombre:“Jasper AI”,          slug:“jasper-ai”,         descripcion:“Plataforma de copywriting con IA para marketing. Genera textos para anuncios, emails y redes sociales en espanol.”, link:“https://jasper.ai”,                            logoUrl:FAV+“jasper.ai”,               logo:“✍️”, categoria:“Escritura”,     gratis:false, popular:76, nuevo:false, featured:false, tags:[“copywriting”,“marketing”,“emails”,“espanol”] },
+{ id:47, nombre:“Copy.ai”,            slug:“copy-ai”,           descripcion:“Genera copy para marketing, ventas y redes sociales con IA. Mas de 90 plantillas en espanol listas para usar.”,    link:“https://copy.ai”,                               logoUrl:FAV+“copy.ai”,                 logo:“📋”, categoria:“Escritura”,     gratis:true,  popular:72, nuevo:false, featured:false, tags:[“copywriting”,“ventas”,“plantillas”,“espanol”] },
+{ id:48, nombre:“Grammarly”,          slug:“grammarly”,         descripcion:“Corrector de escritura con IA para ingles y espanol. Mejora gramatica, estilo y tono en emails y documentos.”,     link:“https://grammarly.com”,                         logoUrl:FAV+“grammarly.com”,           logo:“✅”, categoria:“Escritura”,     gratis:true,  popular:82, nuevo:false, featured:false, tags:[“gramatica”,“correccion”,“espanol”,“estilo”] },
+{ id:49, nombre:“DeepL”,              slug:“deepl”,             descripcion:“La traduccion con IA mas precisa del mercado. Superior a Google Translate para matices del espanol latinoamericano.”, link:“https://deepl.com”,                           logoUrl:FAV+“deepl.com”,               logo:“🌎”, categoria:“Traduccion”,    gratis:true,  popular:85, nuevo:false, featured:false, tags:[“traduccion”,“espanol”,“documentos”,“precision”] },
+{ id:50, nombre:“Google Translate”,   slug:“google-translate”,  descripcion:“El traductor mas usado del mundo. Traduce texto, voz, imagenes y paginas web en mas de 100 idiomas.”,              link:“https://translate.google.com”,                  logoUrl:FAV+“translate.google.com”,    logo:“🌐”, categoria:“Traduccion”,    gratis:true,  popular:90, nuevo:false, featured:false, tags:[“traduccion”,“voz”,“imagenes”,“google”] }
 ];
 
-// ─── API ─────────────────────────────
-
-app.get("/api/tools", (req, res) => {
-  const { categoria, q, orden } = req.query;
-  let resultado = [...tools];
-
-  if (categoria && categoria !== "Todas") {
-    resultado = resultado.filter(t => t.categoria === categoria);
-  }
-
-  if (q) {
-    const query = q.toLowerCase();
-    resultado = resultado.filter(t =>
-      t.nombre.toLowerCase().includes(query) ||
-      t.descripcion.toLowerCase().includes(query) ||
-      t.tags.some(tag => tag.includes(query))
-    );
-  }
-
-  if (orden === "popular") {
-    resultado.sort((a, b) => b.popular - a.popular);
-  } else if (orden === "nuevo") {
-    resultado.sort((a, b) => (b.nuevo ? 1 : 0) - (a.nuevo ? 1 : 0));
-  } else if (orden === "gratis") {
-    resultado.sort((a, b) => (b.gratis ? 1 : 0) - (a.gratis ? 1 : 0));
-  }
-
-  res.json({ total: resultado.length, tools: resultado });
+app.get(”/api/tools”, (req, res) => {
+const { categoria, q, orden } = req.query;
+let resultado = […tools];
+if (categoria && categoria !== “Todas”) resultado = resultado.filter(t => t.categoria === categoria);
+if (q) {
+const query = q.toLowerCase();
+resultado = resultado.filter(t =>
+t.nombre.toLowerCase().includes(query) ||
+t.descripcion.toLowerCase().includes(query) ||
+t.tags.some(tag => tag.includes(query))
+);
+}
+if (orden === “popular”)     resultado.sort((a, b) => b.popular - a.popular);
+else if (orden === “nuevo”)  resultado.sort((a, b) => (b.nuevo ? 1 : 0) - (a.nuevo ? 1 : 0) || b.popular - a.popular);
+else if (orden === “gratis”) resultado.sort((a, b) => (b.gratis ? 1 : 0) - (a.gratis ? 1 : 0) || b.popular - a.popular);
+else resultado.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0) || b.popular - a.popular);
+res.json({ total: resultado.length, tools: resultado });
 });
 
-app.get("/api/tools/:slug", (req, res) => {
-  const tool = tools.find(t => t.slug === req.params.slug);
-  if (!tool) return res.status(404).json({ error: "No encontrada" });
-  res.json(tool);
+app.get(”/api/tools/:slug”, (req, res) => {
+const tool = tools.find(t => t.slug === req.params.slug);
+if (!tool) return res.status(404).json({ error: “No encontrada” });
+res.json(tool);
 });
 
-app.get("/api/categorias", (req, res) => {
-  const categorias = {};
-  tools.forEach(t => {
-    categorias[t.categoria] = (categorias[t.categoria] || 0) + 1;
-  });
-
-  const resultado = [
-    { nombre: "Todas", count: tools.length },
-    ...Object.entries(categorias).map(([nombre, count]) => ({ nombre, count }))
-  ];
-
-  res.json(resultado);
+app.get(”/api/categorias”, (req, res) => {
+const nombres = [“Todas”, …new Set(tools.map(t => t.categoria))];
+res.json(nombres.map(c => ({
+nombre: c,
+count: c === “Todas” ? tools.length : tools.filter(t => t.categoria === c).length
+})));
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+app.get(”*”, (req, res) => {
+res.sendFile(path.join(__dirname, “public”, “index.html”));
 });
 
-app.listen(PORT, () => {
-  console.log("🚀 Server listo");
-});
+app.listen(PORT, () => console.log(“Zyna LATAM corriendo en puerto “ + PORT + “ con “ + tools.length + “ herramientas”));
