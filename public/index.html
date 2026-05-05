@@ -1,1 +1,692 @@
+<!DOCTYPE html>
 
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zyna — Directorio de IA para América Latina 2026</title>
+  <meta name="description" content="El directorio más completo de herramientas de inteligencia artificial para América Latina. Encuentra, filtra y compara las mejores IAs en español."/>
+  <meta name="keywords" content="herramientas IA, inteligencia artificial LATAM, ChatGPT español, Claude, Midjourney, directorio IA 2026, IA gratis"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://zyna-latam.onrender.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://zyna-latam.onrender.com/"/>
+  <meta property="og:title" content="Zyna — El directorio de IA para LATAM"/>
+  <meta property="og:description" content="Más de 50 herramientas de IA curadas para la comunidad hispanohablante."/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- Google Analytics -->
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YZPZ38N9QD"></script>
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YZPZ38N9QD');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cabinet+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #050508;
+      --surface:   #0d0d14;
+      --card:      #0f0f18;
+      --card-h:    #14141f;
+      --accent:    #c8f135;
+      --accent2:   #ff4d6d;
+      --accent3:   #7b61ff;
+      --text:      #f0f0f5;
+      --muted:     #6b6b8a;
+      --border:    #1e1e2e;
+      --border2:   #2a2a3e;
+      --radius:    12px;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'Cabinet Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); min-height: 100vh; overflow-x: hidden; }
+
+    body::after {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: .35;
+    }
+
+    .glow-orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(120px); z-index: 0; }
+    .glow-orb-1 { width: 600px; height: 600px; top: -200px; left: -100px; background: rgba(200,241,53,0.04); }
+    .glow-orb-2 { width: 500px; height: 500px; bottom: -100px; right: -100px; background: rgba(123,97,255,0.06); }
+
+    .ticker { position: relative; z-index: 20; background: var(--accent); color: #000; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1px; overflow: hidden; height: 32px; display: flex; align-items: center; }
+    .ticker-track { display: flex; gap: 48px; white-space: nowrap; animation: ticker 30s linear infinite; }
+    .ticker-track span::before { content: '◆ '; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    nav { position: sticky; top: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; height: 60px; background: rgba(5,5,8,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: var(--font-head); font-size: 2rem; letter-spacing: 2px; color: var(--accent); text-decoration: none; line-height: 1; }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-pill { font-family: var(--font-mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; padding: 6px 14px; border-radius: 100px; border: 1px solid var(--border2); background: transparent; cursor: pointer; transition: all .2s; text-decoration: none; }
+    .nav-pill:hover { color: var(--accent); border-color: var(--accent); }
+    .nav-pill.primary { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700; }
+    .nav-pill.primary:hover { background: #d4ff3a; }
+
+    .hero { position: relative; z-index: 10; padding: 80px 32px 56px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end; }
+    .hero-eyebrow { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+    h1 { font-family: var(--font-head); font-size: clamp(4rem, 10vw, 8rem); line-height: 0.92; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0; }
+    h1 .outline { -webkit-text-stroke: 1px rgba(240,240,245,0.3); color: transparent; }
+    h1 .filled { color: var(--text); }
+    h1 .accent-word { color: var(--accent); }
+    .hero-sub { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 420px; margin-top: 24px; }
+    .hero-stats { display: flex; flex-direction: column; gap: 16px; padding-bottom: 4px; }
+    .stat-item { text-align: right; border-right: 2px solid var(--accent); padding-right: 16px; }
+    .stat-num { font-family: var(--font-head); font-size: 2.8rem; color: var(--text); line-height: 1; letter-spacing: 1px; }
+    .stat-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
+
+    .controls-wrap { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 32px 24px; display: flex; flex-direction: column; gap: 14px; }
+    .search-row { display: flex; gap: 10px; align-items: center; }
+    .search-box { position: relative; flex: 1; }
+    .search-box svg { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--muted); pointer-events: none; }
+    #search { width: 100%; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--radius); padding: 14px 16px 14px 46px; font-size: 0.95rem; font-family: var(--font-body); color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s; }
+    #search::placeholder { color: var(--muted); }
+    #search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,241,53,0.1); }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .filter-label { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-right: 4px; }
+    .chip { font-family: var(--font-mono); font-size: 11px; background: var(--surface); border: 1px solid var(--border2); color: var(--muted); padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all .15s; white-space: nowrap; letter-spacing: .5px; }
+    .chip:hover { border-color: var(--accent); color: var(--text); }
+    .chip.active { background: var(--accent); border-color: var(--accent); color: #000; font-weight: 700; }
+    .chip.orden.active { background: transparent; border-color: var(--accent); color: var(--accent); }
+    .divider-chip { width: 1px; height: 20px; background: var(--border2); margin: 0 4px; }
+
+    .stats-bar { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 32px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .stats-count { font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+    .stats-count strong { color: var(--accent); font-weight: 500; }
+
+    .grid { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; padding: 0 32px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+
+    .card { background: var(--card); padding: 24px; cursor: pointer; transition: background .2s; text-decoration: none; display: block; position: relative; animation: fadeIn .4s both; }
+    .card:hover { background: var(--card-h); }
+    .card.featured { background: #0e0e1a; }
+    .card.featured::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); }
+    .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
+    .card-logo-wrap { width: 42px; height: 42px; background: #fff; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .card-logo-wrap img { width: 26px; height: 26px; object-fit: contain; }
+    .logo-fallback { font-size: 1.3rem; }
+    .card-badges { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+    .badge { font-family: var(--font-mono); font-size: 9px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; padding: 3px 7px; border-radius: 4px; }
+    .badge-free { background: rgba(200,241,53,0.1); color: var(--accent); border: 1px solid rgba(200,241,53,0.2); }
+    .badge-paid { background: rgba(255,77,109,0.08); color: #ff4d6d; border: 1px solid rgba(255,77,109,0.2); }
+    .badge-new  { background: rgba(123,97,255,0.1); color: #a78bfa; border: 1px solid rgba(123,97,255,0.25); }
+    .badge-feat { background: rgba(200,241,53,0.08); color: var(--accent); border: 1px solid rgba(200,241,53,0.15); }
+    .card-nombre { font-family: var(--font-head); font-size: 1.5rem; letter-spacing: 1px; color: var(--text); margin-bottom: 4px; text-transform: uppercase; }
+    .card-cat { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .card-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 20px; }
+    .card-footer { display: flex; align-items: center; justify-content: flex-end; }
+    .card-cta { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 1px; display: flex; align-items: center; gap: 4px; transition: gap .15s; }
+    .card:hover .card-cta { gap: 8px; }
+
+    .empty { grid-column: 1/-1; text-align: center; padding: 80px 20px; color: var(--muted); background: var(--card); }
+    .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+    .empty h3 { font-family: var(--font-head); font-size: 2rem; color: var(--text); margin-bottom: 8px; letter-spacing: 2px; }
+
+    /* ── SECCION APRENDE IA ── */
+    .aprende-section {
+      position: relative; z-index: 10;
+      max-width: 1200px; margin: 0 auto;
+      padding: 60px 32px 80px;
+    }
+    .section-eyebrow {
+      font-family: var(--font-mono); font-size: 11px;
+      color: var(--accent); letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
+    }
+    .section-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--accent); }
+    .section-title {
+      font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem);
+      letter-spacing: 2px; text-transform: uppercase; color: var(--text);
+      margin-bottom: 8px; line-height: 1;
+    }
+    .section-sub {
+      color: var(--muted); font-size: 0.95rem; line-height: 1.6;
+      max-width: 500px; margin-bottom: 40px;
+    }
+    .aprende-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .tut-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 22px;
+      text-decoration: none; display: block;
+      transition: background .2s, border-color .2s, transform .2s;
+      position: relative; overflow: hidden;
+    }
+    .tut-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent3), transparent);
+    }
+    .tut-card:hover { background: var(--card-h); border-color: var(--accent3); transform: translateY(-3px); }
+    .tut-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .tut-logo { width: 40px; height: 40px; background: #fff; border-radius: 9px; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+    .tut-logo img { width: 24px; height: 24px; object-fit: contain; }
+    .tut-nombre { font-family: var(--font-head); font-size: 1.2rem; letter-spacing: 1px; text-transform: uppercase; color: var(--text); }
+    .tut-nivel {
+      display: inline-block; font-family: var(--font-mono); font-size: 9px;
+      letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px;
+      border-radius: 4px; margin-top: 3px;
+    }
+    .nivel-avanzado { background: rgba(255,77,109,0.1); color: #ff4d6d; border: 1px solid rgba(255,77,109,0.2); }
+    .nivel-intermedio { background: rgba(245,158,11,0.1); color: #fbbf24; border: 1px solid rgba(245,158,11,0.2); }
+    .tut-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
+    .tut-links { display: flex; flex-direction: column; gap: 8px; }
+    .tut-link {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; border-radius: 8px;
+      background: var(--surface); border: 1px solid var(--border2);
+      text-decoration: none; transition: all .15s;
+    }
+    .tut-link:hover { border-color: var(--accent3); background: rgba(123,97,255,0.08); }
+    .tut-link-left { display: flex; align-items: center; gap: 8px; }
+    .tut-link-icon { font-size: 0.9rem; }
+    .tut-link-text { font-family: var(--font-mono); font-size: 10px; color: var(--text); letter-spacing: .5px; }
+    .tut-link-lang { font-family: var(--font-mono); font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+    .tut-link-arr { font-family: var(--font-mono); font-size: 10px; color: var(--accent3); }
+
+    .overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); align-items: center; justify-content: center; padding: 20px; }
+    .overlay.open { display: flex; }
+    .modal { background: var(--surface); border: 1px solid var(--border2); border-radius: 20px; padding: 36px; max-width: 520px; width: 100%; position: relative; max-height: 90vh; overflow-y: auto; animation: slideUp .3s both; }
+    .modal-close { position: absolute; top: 16px; right: 16px; background: var(--card); border: 1px solid var(--border2); color: var(--muted); cursor: pointer; width: 32px; height: 32px; border-radius: 8px; font-size: 1rem; display: flex; align-items: center; justify-content: center; transition: all .15s; font-family: var(--font-mono); }
+    .modal-close:hover { color: var(--text); border-color: var(--accent); }
+    .modal-logo { width: 64px; height: 64px; background: #fff; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; overflow: hidden; }
+    .modal-logo img { width: 40px; height: 40px; object-fit: contain; }
+    .modal-nombre { font-family: var(--font-head); font-size: 2.5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text); margin-bottom: 6px; }
+    .modal-cat { font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+    .modal-desc { color: var(--muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 20px; }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 24px; }
+    .modal-tag { font-family: var(--font-mono); font-size: 10px; padding: 4px 10px; border-radius: 4px; background: var(--card); border: 1px solid var(--border2); color: var(--muted); letter-spacing: .5px; }
+    .btn-visit { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; padding: 16px; background: var(--accent); color: #000; font-family: var(--font-head); font-size: 1.2rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 10px; border: none; cursor: pointer; transition: background .2s, transform .15s; }
+    .btn-visit:hover { background: #d4ff3a; transform: translateY(-1px); }
+
+    .submit-title { font-family: var(--font-head); font-size: 2rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .submit-sub { font-size: 0.875rem; color: var(--muted); margin-bottom: 24px; line-height: 1.6; }
+    .submit-sub strong { color: var(--accent); }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; background: var(--card); border: 1px solid var(--border2); border-radius: 8px; padding: 11px 14px; font-size: 0.9rem; font-family: var(--font-body); color: var(--text); outline: none; transition: border-color .2s; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--accent); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-group select option { background: #0f0f18; }
+    .submit-note { margin-top: 14px; padding: 12px 14px; border-radius: 8px; background: rgba(200,241,53,0.05); border: 1px solid rgba(200,241,53,0.15); font-family: var(--font-mono); font-size: 10px; color: var(--muted); letter-spacing: .5px; line-height: 1.6; }
+
+    footer { position: relative; z-index: 10; border-top: 1px solid var(--border); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .footer-logo { font-family: var(--font-head); font-size: 1.5rem; color: var(--accent); letter-spacing: 2px; }
+    .footer-links { display: flex; gap: 20px; align-items: center; }
+    .footer-links a { font-family: var(--font-mono); font-size: 10px; color: var(--muted); text-decoration: none; letter-spacing: 1px; text-transform: uppercase; transition: color .2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy { font-family: var(--font-mono); font-size: 10px; color: var(--border2); letter-spacing: 1px; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .hero { grid-template-columns: 1fr; padding: 48px 16px 32px; gap: 24px; }
+      .hero-stats { flex-direction: row; gap: 20px; }
+      .stat-item { text-align: left; border-right: none; border-left: 2px solid var(--accent); padding-right: 0; padding-left: 12px; }
+      .controls-wrap { padding: 0 16px 20px; }
+      .stats-bar { padding: 0 16px 16px; }
+      .grid { margin: 0 16px; padding: 0; border-radius: 12px; grid-template-columns: 1fr; }
+      .aprende-section { padding: 40px 16px 60px; }
+      .aprende-grid { grid-template-columns: 1fr; }
+      footer { padding: 20px 16px; flex-direction: column; align-items: flex-start; }
+      .modal { padding: 24px 18px; }
+    }
+    @media (max-width: 480px) {
+      h1 { font-size: 3.2rem; }
+      .nav-links .nav-pill:not(.primary) { display: none; }
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="glow-orb glow-orb-1"></div>
+<div class="glow-orb glow-orb-2"></div>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>ChatGPT</span><span>Claude</span><span>Midjourney</span><span>Gemini</span>
+    <span>ElevenLabs</span><span>Runway</span><span>Suno</span><span>Cursor</span>
+    <span>Perplexity</span><span>Canva AI</span><span>Stable Diffusion</span><span>DeepL</span>
+    <span>GitHub Copilot</span><span>Notion AI</span><span>Gamma</span><span>v0</span>
+    <span>ChatGPT</span><span>Claude</span><span>Midjourney</span><span>Gemini</span>
+    <span>ElevenLabs</span><span>Runway</span><span>Suno</span><span>Cursor</span>
+    <span>Perplexity</span><span>Canva AI</span><span>Stable Diffusion</span><span>DeepL</span>
+    <span>GitHub Copilot</span><span>Notion AI</span><span>Gamma</span><span>v0</span>
+  </div>
+</div>
+
+<nav>
+  <span class="nav-logo">ZYNA</span>
+  <div class="nav-links">
+    <a href="#aprende" class="nav-pill">Tutoriales</a>
+    <a href="/api/tools" class="nav-pill" target="_blank">API</a>
+    <button class="nav-pill primary" id="btn-nav">+ Agregar IA</button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Directorio · LATAM · 2026</div>
+    <h1>
+      <span class="filled">ENCUENTRA</span><br>
+      <span class="outline">LA MEJOR</span><br>
+      <span class="accent-word">IA</span>
+    </h1>
+    <p class="hero-sub">El directorio más completo de inteligencia artificial para América Latina. Curado, en español, actualizado.</p>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num" id="stat-total">50</div>
+      <div class="stat-label">Herramientas</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num" id="stat-cats">9</div>
+      <div class="stat-label">Categorías</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">Gratuito</div>
+    </div>
+  </div>
+</section>
+
+<div class="controls-wrap">
+  <div class="search-row">
+    <div class="search-box">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input type="text" id="search" placeholder="Buscar herramienta, categoría, uso..." autocomplete="off"/>
+    </div>
+  </div>
+  <div class="filter-row">
+    <span class="filter-label">Cat.</span>
+    <div id="filtros"></div>
+    <div class="divider-chip"></div>
+    <span class="filter-label">Orden</span>
+    <div id="orden">
+      <button class="chip orden active" data-orden="relevancia">Relevancia</button>
+      <button class="chip orden" data-orden="popular">Popular</button>
+      <button class="chip orden" data-orden="nuevo">Nuevo</button>
+      <button class="chip orden" data-orden="gratis">Gratis</button>
+    </div>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <p class="stats-count" id="stats-count"></p>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<!-- SECCION APRENDE IA -->
+
+<section class="aprende-section" id="aprende">
+  <div class="section-eyebrow">Recursos educativos · En español</div>
+  <div class="section-title">Aprende a usar IA</div>
+  <p class="section-sub">Tutoriales seleccionados para dominar las herramientas mas complejas y profesionales. Todos en español.</p>
+
+  <div class="aprende-grid">
+
+```
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=cursor.sh" alt="Cursor"/></div>
+    <div>
+      <div class="tut-nombre">Cursor AI</div>
+      <span class="tut-nivel nivel-avanzado">Avanzado</span>
+    </div>
+  </div>
+  <p class="tut-desc">Editor de codigo con IA. Aprende a generar, refactorizar y depurar codigo completo con lenguaje natural.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=cursor+ai+tutorial+espanol" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://docs.cursor.com" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Documentacion oficial</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=midjourney.com" alt="Midjourney"/></div>
+    <div>
+      <div class="tut-nombre">Midjourney</div>
+      <span class="tut-nivel nivel-avanzado">Avanzado</span>
+    </div>
+  </div>
+  <p class="tut-desc">Domina los prompts para crear imagenes profesionales. Parametros, estilos y tecnicas avanzadas.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=midjourney+tutorial+espanol+2024" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://docs.midjourney.com" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Documentacion oficial</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=elevenlabs.io" alt="ElevenLabs"/></div>
+    <div>
+      <div class="tut-nombre">ElevenLabs</div>
+      <span class="tut-nivel nivel-intermedio">Intermedio</span>
+    </div>
+  </div>
+  <p class="tut-desc">Clona voces, crea narraciones y produce audio profesional para podcasts, videos y contenido.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=elevenlabs+tutorial+espanol" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://elevenlabs.io/docs" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Documentacion oficial</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=runwayml.com" alt="Runway"/></div>
+    <div>
+      <div class="tut-nombre">Runway</div>
+      <span class="tut-nivel nivel-avanzado">Avanzado</span>
+    </div>
+  </div>
+  <p class="tut-desc">Genera y edita video con IA. Efectos cinematograficos, eliminacion de fondos y texto a video.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=runway+ml+tutorial+espanol" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://help.runwayml.com" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Centro de ayuda</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=make.com" alt="Make"/></div>
+    <div>
+      <div class="tut-nombre">Make</div>
+      <span class="tut-nivel nivel-avanzado">Avanzado</span>
+    </div>
+  </div>
+  <p class="tut-desc">Automatiza flujos de trabajo completos con IA. Conecta apps y elimina tareas repetitivas sin codigo.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=make+automatizacion+tutorial+espanol" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://www.make.com/en/help" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Academia Make</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=stability.ai" alt="Stable Diffusion"/></div>
+    <div>
+      <div class="tut-nombre">Stable Diffusion</div>
+      <span class="tut-nivel nivel-avanzado">Avanzado</span>
+    </div>
+  </div>
+  <p class="tut-desc">Instala y usa el modelo open-source de imagenes localmente. Control total, gratis y sin limites.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=stable+diffusion+tutorial+espanol" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://github.com/AUTOMATIC1111/stable-diffusion-webui" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">GitHub oficial</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=github.com" alt="GitHub Copilot"/></div>
+    <div>
+      <div class="tut-nombre">GitHub Copilot</div>
+      <span class="tut-nivel nivel-intermedio">Intermedio</span>
+    </div>
+  </div>
+  <p class="tut-desc">Integra IA directamente en tu editor. Completa codigo, genera tests y documenta automaticamente.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=github+copilot+tutorial+espanol" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://docs.github.com/en/copilot" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Documentacion GitHub</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+
+<div class="tut-card">
+  <div class="tut-header">
+    <div class="tut-logo"><img src="https://www.google.com/s2/favicons?sz=64&domain=zapier.com" alt="Zapier"/></div>
+    <div>
+      <div class="tut-nombre">Zapier AI</div>
+      <span class="tut-nivel nivel-intermedio">Intermedio</span>
+    </div>
+  </div>
+  <p class="tut-desc">Automatiza tareas entre mas de 7000 apps con IA. Ideal para marketing, ventas y operaciones.</p>
+  <div class="tut-links">
+    <a class="tut-link" href="https://www.youtube.com/results?search_query=zapier+tutorial+espanol+automatizacion" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">▶</span><span class="tut-link-text">Tutoriales en YouTube</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">ES</span><span class="tut-link-arr">→</span></div>
+    </a>
+    <a class="tut-link" href="https://zapier.com/learn" target="_blank" rel="noopener">
+      <div class="tut-link-left"><span class="tut-link-icon">📄</span><span class="tut-link-text">Zapier Learn</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><span class="tut-link-lang">EN</span><span class="tut-link-arr">→</span></div>
+    </a>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<footer>
+  <span class="footer-logo">ZYNA</span>
+  <div class="footer-links">
+    <a href="/api/tools" target="_blank">API</a>
+    <a href="#aprende">Tutoriales</a>
+    <a href="#" id="btn-footer">Agregar herramienta</a>
+    <a href="mailto:zyna.ai.contact@gmail.com">Contacto</a>
+  </div>
+  <span class="footer-copy">2026 Zyna LATAM</span>
+</footer>
+
+<div class="overlay" id="overlay-detalle">
+  <div class="modal">
+    <button class="modal-close" id="close-detalle">X</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay-submit">
+  <div class="modal">
+    <button class="modal-close" id="close-submit">X</button>
+    <div class="submit-title">Agregar herramienta</div>
+    <p class="submit-sub">Completa el formulario y te respondemos en menos de 48hs para coordinar la publicacion. Las posiciones <strong>destacadas</strong> tienen mayor visibilidad.</p>
+    <div class="form-group"><label>Nombre *</label><input type="text" id="f-nombre" placeholder="ej. MiHerramientaIA"/></div>
+    <div class="form-group"><label>URL del sitio *</label><input type="url" id="f-link" placeholder="https://..."/></div>
+    <div class="form-group"><label>Categoria</label>
+      <select id="f-cat">
+        <option>Asistente</option><option>Imagenes</option><option>Audio</option>
+        <option>Video</option><option>Codigo</option><option>Busqueda</option>
+        <option>Productividad</option><option>Diseno</option><option>Traduccion</option>
+      </select>
+    </div>
+    <div class="form-group"><label>Descripcion breve</label><textarea id="f-desc" placeholder="Que hace tu herramienta en 1-2 oraciones..."></textarea></div>
+    <div class="form-group"><label>Tu nombre / empresa</label><input type="text" id="f-contacto" placeholder="Tu nombre"/></div>
+    <div class="form-group"><label>Tu email *</label><input type="email" id="f-email" placeholder="tu@email.com"/></div>
+    <button class="btn-visit" id="btn-enviar">ENVIAR SOLICITUD</button>
+    <div class="submit-note">Tu solicitud llega directo a zyna.ai.contact@gmail.com — respondemos en menos de 48hs.</div>
+  </div>
+</div>
+
+<script>
+  var API = '/api/tools';
+  var API_CATS = '/api/categorias';
+  var catActual = 'Todas', ordenActual = 'relevancia', busqueda = '', timer;
+
+  async function cargarCategorias() {
+    var res = await fetch(API_CATS);
+    var cats = await res.json();
+    var cont = document.getElementById('filtros');
+    cont.innerHTML = cats.map(function(c) {
+      return '<button class="chip ' + (c.nombre === 'Todas' ? 'active' : '') + '" data-cat="' + c.nombre + '">' + c.nombre + ' <span style="opacity:.4">' + c.count + '</span></button>';
+    }).join('');
+    cont.querySelectorAll('.chip').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        catActual = btn.dataset.cat;
+        cont.querySelectorAll('.chip').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        cargarTools();
+      });
+    });
+    document.getElementById('stat-cats').textContent = cats.length - 1;
+  }
+
+  document.getElementById('orden').addEventListener('click', function(e) {
+    var btn = e.target.closest('.chip');
+    if (!btn) return;
+    ordenActual = btn.dataset.orden;
+    document.querySelectorAll('#orden .chip').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    cargarTools();
+  });
+
+  document.getElementById('search').addEventListener('input', function(e) {
+    busqueda = e.target.value.trim();
+    clearTimeout(timer);
+    timer = setTimeout(cargarTools, 260);
+  });
+
+  async function cargarTools() {
+    var params = new URLSearchParams();
+    if (catActual !== 'Todas') params.set('categoria', catActual);
+    if (busqueda) params.set('q', busqueda);
+    if (ordenActual !== 'relevancia') params.set('orden', ordenActual);
+    var res = await fetch(API + '?' + params);
+    var data = await res.json();
+    renderTools(data.tools, data.total);
+  }
+
+  function logoImg(t) {
+    return '<img src="' + t.logoUrl + '" alt="' + t.nombre + '" loading="lazy" style="width:26px;height:26px;object-fit:contain" onerror="this.style.display=\'none\'"/>';
+  }
+
+  function renderTools(tools, total) {
+    document.getElementById('stats-count').innerHTML = '<strong>' + total + '</strong> herramientas encontradas';
+    document.getElementById('stat-total').textContent = total;
+    var grid = document.getElementById('grid');
+    if (!tools.length) {
+      grid.innerHTML = '<div class="empty"><div class="empty-icon">O</div><h3>Sin resultados</h3><p style="font-family:var(--font-mono);font-size:11px">Proba con otra busqueda o categoria</p></div>';
+      return;
+    }
+    grid.innerHTML = tools.map(function(t, i) {
+      return '<div class="card ' + (t.featured ? 'featured' : '') + '" data-slug="' + t.slug + '" style="animation-delay:' + (i * 0.03) + 's">' +
+        '<div class="card-header">' +
+          '<div class="card-logo-wrap">' + logoImg(t) + '</div>' +
+          '<div class="card-badges">' +
+            (t.featured ? '<span class="badge badge-feat">Top</span>' : '') +
+            (t.nuevo ? '<span class="badge badge-new">Nuevo</span>' : '') +
+            '<span class="badge ' + (t.gratis ? 'badge-free' : 'badge-paid') + '">' + (t.gratis ? 'Gratis' : 'Pago') + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="card-nombre">' + t.nombre + '</div>' +
+        '<div class="card-cat">' + t.categoria + '</div>' +
+        '<p class="card-desc">' + t.descripcion + '</p>' +
+        '<div class="card-footer"><span class="card-cta">Ver mas</span></div>' +
+      '</div>';
+    }).join('');
+    grid.querySelectorAll('.card').forEach(function(c) {
+      c.addEventListener('click', function() { abrirDetalle(c.dataset.slug); });
+    });
+  }
+
+  async function abrirDetalle(slug) {
+    var res = await fetch('/api/tools/' + slug);
+    var t = await res.json();
+    document.getElementById('modal-body').innerHTML =
+      '<div class="modal-logo">' + logoImg(t) + '</div>' +
+      '<div class="modal-nombre">' + t.nombre + '</div>' +
+      '<div class="modal-cat">' + t.categoria + '</div>' +
+      '<p class="modal-desc">' + t.descripcion + '</p>' +
+      '<div class="modal-tags">' + t.tags.map(function(tag) { return '<span class="modal-tag">#' + tag + '</span>'; }).join('') + '</div>' +
+      '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px">' +
+        (t.featured ? '<span class="badge badge-feat">Destacado</span>' : '') +
+        (t.nuevo ? '<span class="badge badge-new">Nuevo</span>' : '') +
+        '<span class="badge ' + (t.gratis ? 'badge-free' : 'badge-paid') + '">' + (t.gratis ? 'Gratis' : 'De pago') + '</span>' +
+      '</div>' +
+      '<a class="btn-visit" href="' + (t.utm || t.link) + '" target="_blank" rel="noopener">VISITAR ' + t.nombre + '</a>';
+    document.getElementById('overlay-detalle').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarDetalle() { document.getElementById('overlay-detalle').classList.remove('open'); document.body.style.overflow = ''; }
+  function abrirSubmit() { document.getElementById('overlay-submit').classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function cerrarSubmit() { document.getElementById('overlay-submit').classList.remove('open'); document.body.style.overflow = ''; }
+
+  document.getElementById('close-detalle').addEventListener('click', cerrarDetalle);
+  document.getElementById('overlay-detalle').addEventListener('click', function(e) { if (e.target.id === 'overlay-detalle') cerrarDetalle(); });
+  document.getElementById('close-submit').addEventListener('click', cerrarSubmit);
+  document.getElementById('overlay-submit').addEventListener('click', function(e) { if (e.target.id === 'overlay-submit') cerrarSubmit(); });
+  document.getElementById('btn-nav').addEventListener('click', function(e) { e.preventDefault(); abrirSubmit(); });
+  document.getElementById('btn-footer').addEventListener('click', function(e) { e.preventDefault(); abrirSubmit(); });
+
+  document.getElementById('btn-enviar').addEventListener('click', function() {
+    var nombre = document.getElementById('f-nombre').value.trim();
+    var link   = document.getElementById('f-link').value.trim();
+    var cat    = document.getElementById('f-cat').value;
+    var desc   = document.getElementById('f-desc').value.trim();
+    var ctc    = document.getElementById('f-contacto').value.trim();
+    var email  = document.getElementById('f-email').value.trim();
+    if (!nombre || !link || !email) { alert('Completa nombre, URL y tu email.'); return; }
+    var asunto = encodeURIComponent('[Zyna] Nueva herramienta: ' + nombre);
+    var cuerpo = encodeURIComponent('Hola! Quiero agregar mi herramienta a Zyna LATAM.\n\nNombre: ' + nombre + '\nURL: ' + link + '\nCategoria: ' + cat + '\nDescripcion: ' + (desc || 'no especificada') + '\nContacto: ' + (ctc || 'no especificado') + '\nEmail: ' + email + '\n\n---\nEnviado desde zyna-latam.onrender.com');
+    window.location.href = 'mailto:zyna.ai.contact@gmail.com?subject=' + asunto + '&body=' + cuerpo;
+  });
+
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { cerrarDetalle(); cerrarSubmit(); } });
+
+  cargarCategorias().then(cargarTools);
+</script>
+
+</body>
+</html>
